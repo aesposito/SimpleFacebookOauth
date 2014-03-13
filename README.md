@@ -35,7 +35,7 @@ Simple javascript facebook oauth
 		picture: "http://...",
 		link: "http://..."
 	}, function(e){
-
+		//Callback publish finish
 	});
 
 	//User info

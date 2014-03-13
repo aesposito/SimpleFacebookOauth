@@ -1,3 +1,9 @@
+/*
+SimpleFacebookOauth
+Simple javascript facebook oauth
+(c) Alexis Esposito 2014 (@alexisesposito)
+*/
+
 window.fbAsyncInit = function() {
 	FB.init({ 
 		appId: 'YOUR_APP_ID', 
