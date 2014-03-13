@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>SimpleFacebookOauth Demo</title>
+	<script type="text/javascript" src="https://connect.facebook.net/en_US/all.js"></script>
+	<script src="SimpleFacebookOauth.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<body>
+	<button class="btOauth">OAuth</button>
+	<button class="data">Info</button>
+	<button class="publish">Publish</button>
+	<br/><span class="name"></span>
+	<br/><span class="email"></span>
+	<br/><img class="imageProfile" src=""/>	
+
+	<script type="text/javascript">
+
+	$(document).ready(function(e){})
+	{
+		var oauth = new SimpleFacebookOauth();
+
+		$('.data').fadeOut(0);
+		$('.publish').fadeOut(0);
+		
+		$('.btOauth').click(function(e){
+			oauth.login({scope:'email,publish_stream'}, function(success, token){
+				if (success)
+				{
+					$('.data').fadeIn(300);
+					$('.publish').fadeIn(300);	
+				}
+			});
+		});
+		
+
+		$('.publish').click(function(e){
+			oauth.publish({
+				message: "message",
+				picture: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1/p160x160/1374879_718449298169448_1597963465_n.png",
+				link: "http://www.facebook.com/"
+			}, function(e){
+				$('.publish').html('Publish finish');
+			});
+		});
+
+
+		$('.data').click(function(e){
+			oauth.getMe(function(me){
+				$('.imageProfile').attr('src', me.picture);
+				$('.name').html(me.name);
+				$('.email').html(me.email);	
+			});
+		});
+	}
+
+	</script>
+</body>
+</html>
